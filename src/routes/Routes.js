@@ -8,6 +8,7 @@ import Blog from '../pages/Blog/Blog';
 import BlogDetails from '../pages/Blog/BlogDetails/BlogDetails';
 import Courses from '../pages/Courses/Courses';
 import Home from '../pages/Home/Home';
+import NotFound404 from '../pages/Other/NotFound/NotFound404';
 
 export const routes = createBrowserRouter([
   {
@@ -16,16 +17,16 @@ export const routes = createBrowserRouter([
     children: [
       { path: '/', element: <Home></Home> },
       {
-        path: 'coureses',
+        path: 'courses',
         element: <Courses></Courses>,
         loader: () => fetch(`http://localhost:5000/courses`)
       },
       {
-        path: 'courese/:slug',
+        path: 'courses/:slug',
         element: <Courses></Courses>,
         loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.slug}`)
       },
-      { path: '/blogs', element: <Blog></Blog> },
+      { path: '/blog', element: <Blog></Blog> },
       {
         path: '/blog/:id',
         element: <BlogDetails></BlogDetails>,
@@ -35,5 +36,6 @@ export const routes = createBrowserRouter([
       { path: '/login', element: <Login></Login> },
       { path: '/register', element: <Register></Register> },
     ]
-  }
+  },
+  { path: '*', element: <NotFound404></NotFound404> }
 ])
