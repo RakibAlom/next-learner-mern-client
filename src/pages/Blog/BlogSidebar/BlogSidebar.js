@@ -5,21 +5,21 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../../contexts/ThemeContext/ThemeControlContext';
 
-const CourseSidebar = () => {
+const BlogSidebar = () => {
   const { dark } = useContext(ThemeContext);
-  const [courses, setCourses] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/courses')
+    fetch('http://localhost:5000/blog')
       .then(res => res.json())
-      .then(data => setCourses(data))
-  }, [courses]);
+      .then(data => setBlogs(data))
+  }, [blogs]);
   return (
     <div>
       <div className="list-group rounded-0">
         {
-          courses.map(course =>
-            <NavLink to={`/courses/${course.slug}`} className={`list-group-item list-group-item-action border-0 shadow mb-3`} aria-current="true" key={course.id}>
-              {course.name}
+          blogs.map(blog =>
+            <NavLink to={`/blog/${blog.slug}`} className={`list-group-item list-group-item-action border-0 shadow mb-3`} aria-current="true" key={blog.id}>
+              {blog.title}
             </NavLink>
           )
         }
@@ -28,4 +28,4 @@ const CourseSidebar = () => {
   );
 };
 
-export default CourseSidebar;
+export default BlogSidebar;

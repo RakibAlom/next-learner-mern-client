@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import Course from './Course/Course';
 import CourseSidebar from './CourseSidebar/CourseSidebar';
 
