@@ -4,11 +4,12 @@ import Login from '../auth/Login/Login';
 import Register from '../auth/Register/Register';
 import Main from '../layouts/Main/Main';
 import About from '../pages/About/About';
-import Blog from '../pages/Blog/Blog';
 import BlogDetails from '../pages/Blog/BlogDetails/BlogDetails';
 import Courses from '../pages/Courses/Courses';
 import Home from '../pages/Home/Home';
 import NotFound404 from '../pages/Other/NotFound/NotFound404';
+import Blogs from '../pages/Blog/Blogs';
+import CourseDetails from '../pages/Courses/CourseDetails/CourseDetails';
 
 export const routes = createBrowserRouter([
   {
@@ -23,10 +24,10 @@ export const routes = createBrowserRouter([
       },
       {
         path: 'courses/:slug',
-        element: <Courses></Courses>,
+        element: <CourseDetails></CourseDetails>,
         loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.slug}`)
       },
-      { path: '/blog', element: <Blog></Blog> },
+      { path: '/blog', element: <Blogs></Blogs> },
       {
         path: '/blog/:id',
         element: <BlogDetails></BlogDetails>,
