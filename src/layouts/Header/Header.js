@@ -6,9 +6,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../contexts/ThemeContext/ThemeControlContext';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
   const { dark, changeDarkMood } = useContext(ThemeContext);
+  const { user } = useContext(AuthContext)
   return (
     <>
       <Navbar className='shadow-sm' collapseOnSelect expand="lg" bg={dark ? "dark" : "light"} variant={dark ? "dark" : "light"}>
