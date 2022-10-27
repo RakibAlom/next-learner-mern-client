@@ -12,7 +12,7 @@ const Courses = () => {
           <div className="row">
             {
               courses.map(course =>
-                <div className="col-md-6 col-lg-4 mb-3" key={course.id}>
+                <div className="col-lg-6 col-xl-4 mb-3" key={course.id}>
                   <Course course={course}></Course>
                 </div>
               )

@@ -9,7 +9,7 @@ import './Register.css'
 import toast from 'react-hot-toast';
 
 const Register = () => {
-  const { createUserRegister, setUser } = useContext(AuthContext);
+  const { createUserRegister, updateUserProfile, verifyEmail } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
   const handleAccepted = () => {
     setAccepted(!accepted)
@@ -20,22 +20,41 @@ const Register = () => {
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
-    const photo = form.photo_url.value;
+    const photoURL = form.photoURL.value;
     const password = form.password.value;
     const confirm_password = form.confirm_password.value;
 
     if (password === confirm_password) {
       createUserRegister(email, password)
         .then(res => {
-          const currentUser = res.user;
-          setUser(currentUser)
-          console.log(currentUser)
-          toast.success('Welcome, our next learner!');
-        }).catch(error => console.error(error));
+          form.reset()
+          handleUpdateUserProfile(name, photoURL)
+          handleEmailVerification();
+          toast.success('Please verify your email address.')
+        }).catch(error => {
+          console.error(error)
+        });
     } else {
       toast.error('Confirm Password Not Matched!');
     }
 
+  }
+
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL
+    }
+
+    updateUserProfile(profile)
+      .then(() => { })
+      .catch(error => console.error(error));
+  }
+
+  const handleEmailVerification = () => {
+    verifyEmail()
+      .then(() => { })
+      .catch(error => console.error(error));
   }
 
   return (
@@ -52,7 +71,7 @@ const Register = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPhotoURL">
           <Form.Label>Photo URL (Optional)</Form.Label>
-          <Form.Control className='rounded-0' name='photo_url' type="text" placeholder="Photo URL" />
+          <Form.Control className='rounded-0' name='photoURL' type="text" placeholder="Photo URL" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>

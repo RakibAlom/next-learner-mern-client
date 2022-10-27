@@ -14,7 +14,7 @@ const BlogSidebar = () => {
       .then(data => setBlogs(data))
   }, [blogs]);
   return (
-    <div>
+    <div className='sticky-md-top'>
       <div className="list-group rounded-0">
         {
           blogs.map(blog =>

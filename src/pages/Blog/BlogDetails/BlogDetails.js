@@ -1,13 +1,14 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BlogSidebar from '../BlogSidebar/BlogSidebar';
+import './BlogDetails.css'
 
 const BloDetails = () => {
   const blog = useLoaderData()
   return (
     <div className="row py-4">
       <div className="col-md-8 col-lg-9">
-        <div className='shadow p-3'>
+        <div className='shadow p-3 blog-details'>
           <h2>{blog.title}</h2>
           <img className='img-fluid my-3 rounded-3' src={blog.thumbnail_image} alt={blog.title} />
           <div>

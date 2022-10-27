@@ -2,13 +2,18 @@ import React from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import OtherLoginSystem from '../OtherLoginSystem/OtherLoginSystem';
 import './Login.css'
+import toast from 'react-hot-toast';
 
 const Login = () => {
-  const { setUser, signInWithEmailPass } = useContext(AuthContext)
+  const { signInWithEmailPass, setLoading } = useContext(AuthContext)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.form?.pathname || '/';
+
   const handleSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -16,10 +21,21 @@ const Login = () => {
     const password = form.password.value;
     signInWithEmailPass(email, password)
       .then(res => {
-        const currentUser = res.user;
-        setUser(currentUser)
-        console.log(currentUser)
-      }).catch(error => console.error(error));
+        const user = res.user;
+        form.reset();
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+          toast.success('Welcome, you login successfully!')
+        }
+        else {
+          toast.error('Your email is not verified. Please verify your email address.')
+        }
+
+      }).catch(error => {
+        console.error(error)
+      }).finally(() => {
+        setLoading(false);
+      })
 
   }
   return (
@@ -28,12 +44,12 @@ const Login = () => {
       <Form onSubmit={handleSignIn}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control className='rounded-0' type="email" placeholder="Enter email" />
+          <Form.Control className='rounded-0' name="email" type="email" placeholder="Enter email" required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control className='rounded-0' type="password" placeholder="Password" />
+          <Form.Control className='rounded-0' name="password" type="password" placeholder="Password" required />
         </Form.Group>
         <Button className='w-100 rounded-0 mt-2' variant="primary" type="submit">
           Login

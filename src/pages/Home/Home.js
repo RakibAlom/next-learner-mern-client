@@ -1,12 +1,15 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import BlogCard from '../Blog/BlogCard/BlogCard';
 import Course from '../Courses/Course/Course';
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
   const [courses, setCourses] = useState([]);
   const [blogs, setBlogs] = useState([]);
 
@@ -35,11 +38,11 @@ const Home = () => {
             <h1 className='mb-3'>Become a next tech rider</h1>
             <p className='my-3'>Start, switch, or advance your career with more than 5,200 courses, Professional Certificates, and degrees from world-class universities and companies.</p>
             <div className='banner-button'>
-              <Link to="/register">
-                <button className='btn btn-lg btn-primary rounded-0 fw-semibold px-lg-5'>Join Free</button>
-              </Link>
+              {user && user.uid ? null : <Link to="/register">
+                <button className='btn btn-lg btn-primary rounded-0 fw-semibold px-lg-5 me-3'>Join Free</button>
+              </Link>}
               <Link to="/courses">
-                <button className='btn btn-lg btn-outline-primary rounded-0 fw-semibold px-lg-5 ms-3'>See Our Courses</button>
+                <button className='btn btn-lg btn-outline-primary rounded-0 fw-semibold px-lg-5'>See Our Courses</button>
               </Link>
             </div>
           </div>

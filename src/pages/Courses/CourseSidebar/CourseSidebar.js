@@ -14,7 +14,7 @@ const CourseSidebar = () => {
       .then(data => setCourses(data))
   }, [courses]);
   return (
-    <div>
+    <div className='sticky-md-top'>
       <div className="list-group rounded-0">
         {
           courses.map(course =>

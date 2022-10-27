@@ -4,17 +4,19 @@ import { useContext } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const OtherLoginSystem = () => {
-  const { user, signInWithProvider, setUser } = useContext(AuthContext);
+  const { signInWithProvider } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.form?.pathname || '/';
   const handleGoogleSignIn = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithProvider(googleProvider)
       .then(res => {
-        const currentUser = res.user;
-        setUser(currentUser)
-        console.log(currentUser)
+        navigate(from, { replace: true });
         toast.success('Welcome, you connected with Google!');
       }).catch(error => console.error(error));
   }
@@ -22,9 +24,7 @@ const OtherLoginSystem = () => {
     const githubProvider = new GithubAuthProvider();
     signInWithProvider(githubProvider)
       .then(res => {
-        const currentUser = res.user;
-        setUser(currentUser)
-        console.log(currentUser)
+        navigate(from, { replace: true });
         toast.success('Welcome, you connected with Github!');
       }).catch(error => console.error(error));
 
