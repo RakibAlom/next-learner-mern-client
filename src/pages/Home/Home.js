@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/blogs`)
+    fetch(`http://localhost:5000/blog`)
       .then(res => res.json())
       .then(data => setBlogs(data));
   }, []);

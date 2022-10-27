@@ -18,7 +18,7 @@ const BlogSidebar = () => {
       <div className="list-group rounded-0">
         {
           blogs.map(blog =>
-            <NavLink to={`/blog/${blog.slug}`} className={`list-group-item list-group-item-action border-0 shadow mb-3`} aria-current="true" key={blog.id}>
+            <NavLink to={`/blog/${blog.slug}`} className={`list-group-item list-group-item-action border-0 shadow mb-3 py-3`} aria-current="true" key={blog.id}>
               {blog.title}
             </NavLink>
           )
