@@ -11,7 +11,7 @@ const OtherLoginSystem = () => {
   const { signInWithProvider } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.form?.pathname || '/';
+  const from = location.state?.from?.pathname || '/';
   const handleGoogleSignIn = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithProvider(googleProvider)
@@ -25,10 +25,12 @@ const OtherLoginSystem = () => {
     signInWithProvider(githubProvider)
       .then(res => {
         navigate(from, { replace: true });
-        toast.success('Welcome, you connected with Github!');
-      }).catch(error => console.error(error));
+        toast.success('Welcome, you connected with GitHub!');
+      }).catch(error => console.error(error))
 
   }
+
+
   return (
     <div>
       <Row>

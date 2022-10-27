@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { OverlayTrigger } from 'react-bootstrap';
 
 const Header = () => {
   const { dark, changeDarkMood } = useContext(ThemeContext);
@@ -54,9 +55,18 @@ const Header = () => {
               {
                 user && user.uid ?
                   <>
-                    <span style={{ cursor: "pointer" }} className="nav-link" title={user.displayName}>
-                      {user.photoURL ? <img style={{ height: "25px", width: "25px" }} className="rounded-circle" src={user.photoURL} alt={user.displayName} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom" /> : <FaUserCircle title={user.displayName}></FaUserCircle>}
-                    </span>
+                    <OverlayTrigger
+                      placement='bottom'
+                      overlay={
+                        <Tooltip id='tooltip-bottom2'>
+                          {user?.displayName}
+                        </Tooltip>
+                      }
+                    >
+                      <span style={{ cursor: "pointer" }} className="nav-link" title={user.displayName}>
+                        {user.photoURL ? <img style={{ height: "25px", width: "25px" }} className="rounded-circle" src={user.photoURL} alt={user.displayName} /> : <FaUserCircle title={user.displayName}></FaUserCircle>}
+                      </span>
+                    </OverlayTrigger>
                     <span style={{ cursor: "pointer" }} className="nav-link" onClick={handleSignOut}>
                       Logout <FaSignOutAlt></FaSignOutAlt>
                     </span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import CourseSidebar from '../CourseSidebar/CourseSidebar';
 import './CourseDetails.css';
 
@@ -18,7 +18,7 @@ const CourseDetails = () => {
               <span className='text-secondary fw-semibold'><small>{course.total_times}</small></span>
             </div>
             <div className='purchase-button'>
-              <button className='btn btn-success rounded-0 px-3 px-lg-5 fw-semibold'>Purchase {course.purchase_price}</button>
+              <Link to={`/courses/check-out/${course.id}`}><button className='btn btn-success rounded-0 px-3 px-lg-5 fw-semibold'>Purchase {course.purchase_price}</button></Link>
             </div>
           </div>
           <hr />

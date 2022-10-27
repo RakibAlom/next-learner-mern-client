@@ -7,32 +7,29 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import OtherLoginSystem from '../OtherLoginSystem/OtherLoginSystem';
 import './Login.css'
 import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 const Login = () => {
   const { signInWithEmailPass, setLoading } = useContext(AuthContext)
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.form?.pathname || '/';
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/';
 
   const handleSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    setError('')
     signInWithEmailPass(email, password)
       .then(res => {
-        const user = res.user;
         form.reset();
-        if (user.emailVerified) {
-          navigate(from, { replace: true });
-          toast.success('Welcome, you login successfully!')
-        }
-        else {
-          toast.error('Your email is not verified. Please verify your email address.')
-        }
-
+        navigate(from, { replace: true });
+        toast.success('Welcome, you login successfully!')
       }).catch(error => {
         console.error(error)
+        setError(error.message)
       }).finally(() => {
         setLoading(false);
       })
@@ -41,6 +38,7 @@ const Login = () => {
   return (
     <section className='login-section'>
       <h2 className='text-center mb-4'>Login</h2>
+      <p class="text-danger text-center">{error}</p>
       <Form onSubmit={handleSignIn}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>

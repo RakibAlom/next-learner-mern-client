@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import OtherLoginSystem from '../OtherLoginSystem/OtherLoginSystem';
 import './Register.css'
@@ -11,9 +11,8 @@ import toast from 'react-hot-toast';
 const Register = () => {
   const { createUserRegister, updateUserProfile, verifyEmail } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
-  const handleAccepted = () => {
-    setAccepted(!accepted)
-  }
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -29,10 +28,12 @@ const Register = () => {
         .then(res => {
           form.reset()
           handleUpdateUserProfile(name, photoURL)
+          navigate('/')
           handleEmailVerification();
           toast.success('Please verify your email address.')
         }).catch(error => {
           console.error(error)
+          setError(error)
         });
     } else {
       toast.error('Confirm Password Not Matched!');
@@ -57,9 +58,14 @@ const Register = () => {
       .catch(error => console.error(error));
   }
 
+  const handleAccepted = () => {
+    setAccepted(!accepted)
+  }
+
   return (
     <section className='register-section'>
       <h2 className='text-center mb-4'>Register</h2>
+      <p class="text-danger text-center">{error}</p>
       <Form onSubmit={handleRegister}>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Full Name</Form.Label>

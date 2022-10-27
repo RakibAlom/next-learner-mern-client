@@ -10,6 +10,8 @@ import Home from '../pages/Home/Home';
 import NotFound404 from '../pages/Other/NotFound/NotFound404';
 import Blogs from '../pages/Blog/Blogs';
 import CourseDetails from '../pages/Courses/CourseDetails/CourseDetails';
+import CoursePurchase from '../pages/Courses/CoursePurchase/CoursePurchase';
+import PrivateRoutes from './PrivateRoutes';
 
 export const routes = createBrowserRouter([
   {
@@ -26,6 +28,11 @@ export const routes = createBrowserRouter([
         path: 'courses/:slug',
         element: <CourseDetails></CourseDetails>,
         loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.slug}`)
+      },
+      {
+        path: '/courses/check-out/:id',
+        element: <PrivateRoutes><CoursePurchase></CoursePurchase></PrivateRoutes>,
+        loader: ({ params }) => fetch(`http://localhost:5000/courses/check-out/${params.id}`)
       },
       {
         path: '/blog',
