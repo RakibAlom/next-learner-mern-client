@@ -23,27 +23,27 @@ export const routes = createBrowserRouter([
       {
         path: 'courses',
         element: <Courses></Courses>,
-        loader: () => fetch(`http://localhost:5000/courses`)
+        loader: () => fetch(`https://next-learner-server.vercel.app/courses`)
       },
       {
         path: 'courses/:slug',
         element: <CourseDetails></CourseDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.slug}`)
+        loader: ({ params }) => fetch(`https://next-learner-server.vercel.app/courses/${params.slug}`)
       },
       {
         path: '/courses/check-out/:id',
         element: <PrivateRoutes><CoursePurchase></CoursePurchase></PrivateRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:5000/courses/check-out/${params.id}`)
+        loader: ({ params }) => fetch(`https://next-learner-server.vercel.app/courses/check-out/${params.id}`)
       },
       {
         path: '/blog',
         element: <Blogs></Blogs>,
-        loader: () => fetch(`http://localhost:5000/blog`)
+        loader: () => fetch(`https://next-learner-server.vercel.app/blog`)
       },
       {
         path: '/blog/:slug',
         element: <BlogDetails></BlogDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.slug}`)
+        loader: ({ params }) => fetch(`https://next-learner-server.vercel.app/blog/${params.slug}`)
       },
       {
         path: '/faq',

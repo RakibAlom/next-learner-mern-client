@@ -1,15 +1,12 @@
 import React from 'react';
-import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ThemeContext } from '../../../contexts/ThemeContext/ThemeControlContext';
 
 const CourseSidebar = () => {
-  const { dark } = useContext(ThemeContext);
   const [courses, setCourses] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/courses')
+    fetch('https://next-learner-server.vercel.app/courses')
       .then(res => res.json())
       .then(data => setCourses(data))
   }, [courses]);

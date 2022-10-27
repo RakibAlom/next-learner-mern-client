@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import CourseSidebar from '../CourseSidebar/CourseSidebar';
 
 const CourseDetails = () => {

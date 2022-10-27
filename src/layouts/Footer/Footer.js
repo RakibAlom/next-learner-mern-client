@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../contexts/ThemeContext/ThemeControlContext';
+import logo from '../../assets/images/next-learner-logo.png';
 
 const Footer = () => {
   const { dark } = useContext(ThemeContext)
@@ -28,12 +29,11 @@ const Footer = () => {
             <div className='d-flex justify-content-between align-items-center py-4'>
               <div className='footer-image'>
                 <img
-                  src="https://react-bootstrap.github.io/logo.svg"
-                  width="30"
+                  src={logo}
                   height="30"
                   className="d-inline-block align-top"
-                  alt="React Bootstrap logo"
-                /> Next-Learner
+                  alt="Next-Learner"
+                /> <span className='fw-bold'>Next-Learner</span>
               </div>
               <div>
                 <p className='text-secondary fw-semibold m-0'>Copyright @2022</p>

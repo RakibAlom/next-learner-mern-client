@@ -10,6 +10,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { OverlayTrigger } from 'react-bootstrap';
+import logo from '../../assets/images/next-learner-logo.png';
 
 const Header = () => {
   const { dark, changeDarkMood } = useContext(ThemeContext);
@@ -27,12 +28,11 @@ const Header = () => {
           <NavLink to="/" className="text-decoration-none">
             <Navbar.Brand>
               <img
-                src="https://react-bootstrap.github.io/logo.svg"
-                width="30"
+                src={logo}
                 height="30"
                 className="d-inline-block align-top"
                 alt="React Bootstrap logo"
-              /> Next Learner
+              /> <span className='fw-bold'>Next Learner</span>
             </Navbar.Brand>
           </NavLink>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -42,7 +42,7 @@ const Header = () => {
               <NavLink className="nav-link" to="/blog">Blog</NavLink>
               <NavLink className="nav-link" to="/faq">FAQ</NavLink>
               <NavLink className="nav-link" to="/about">About</NavLink>
-              <Link className="nav-link" href="javascript:viod(0)" onClick={changeDarkMood}>
+              <Link className="nav-link" href="#" onClick={changeDarkMood}>
                 {dark ?
                   <>
                     <FaSun></FaSun> Light

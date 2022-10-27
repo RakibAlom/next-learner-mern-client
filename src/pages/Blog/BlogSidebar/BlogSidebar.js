@@ -1,15 +1,12 @@
 import React from 'react';
-import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ThemeContext } from '../../../contexts/ThemeContext/ThemeControlContext';
 
 const BlogSidebar = () => {
-  const { dark } = useContext(ThemeContext);
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/blog')
+    fetch('https://next-learner-server.vercel.app/blog')
       .then(res => res.json())
       .then(data => setBlogs(data))
   }, [blogs]);
