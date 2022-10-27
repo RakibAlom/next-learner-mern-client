@@ -40,6 +40,7 @@ const Header = () => {
             <Nav className="ms-auto align-items-lg-center pt-4 pt-lg-0 fw-semibold">
               <NavLink className="nav-link" to="/courses">Courses</NavLink>
               <NavLink className="nav-link" to="/blog">Blog</NavLink>
+              <NavLink className="nav-link" to="/faq">FAQ</NavLink>
               <NavLink className="nav-link" to="/about">About</NavLink>
               <Link className="nav-link" href="javascript:viod(0)" onClick={changeDarkMood}>
                 {dark ?

@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 const Register = () => {
   const { createUserRegister, updateUserProfile, verifyEmail } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = (event) => {
@@ -23,6 +23,8 @@ const Register = () => {
     const password = form.password.value;
     const confirm_password = form.confirm_password.value;
 
+    setError('')
+
     if (password === confirm_password) {
       createUserRegister(email, password)
         .then(res => {
@@ -33,7 +35,8 @@ const Register = () => {
           toast.success('Please verify your email address.')
         }).catch(error => {
           console.error(error)
-          setError(error)
+          setError(error.message)
+          toast.error(error.message)
         });
     } else {
       toast.error('Confirm Password Not Matched!');
@@ -49,13 +52,19 @@ const Register = () => {
 
     updateUserProfile(profile)
       .then(() => { })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error)
+        toast.error(error.message)
+      });
   }
 
   const handleEmailVerification = () => {
     verifyEmail()
       .then(() => { })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error)
+        toast.error(error.message)
+      });
   }
 
   const handleAccepted = () => {
@@ -65,7 +74,7 @@ const Register = () => {
   return (
     <section className='register-section'>
       <h2 className='text-center mb-4'>Register</h2>
-      <p class="text-danger text-center">{error}</p>
+      <p className="text-danger text-center">{error}</p>
       <Form onSubmit={handleRegister}>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Full Name</Form.Label>

@@ -12,6 +12,7 @@ import Blogs from '../pages/Blog/Blogs';
 import CourseDetails from '../pages/Courses/CourseDetails/CourseDetails';
 import CoursePurchase from '../pages/Courses/CoursePurchase/CoursePurchase';
 import PrivateRoutes from './PrivateRoutes';
+import FAQ from '../pages/FAQ/FAQ';
 
 export const routes = createBrowserRouter([
   {
@@ -44,10 +45,14 @@ export const routes = createBrowserRouter([
         element: <BlogDetails></BlogDetails>,
         loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.slug}`)
       },
+      {
+        path: '/faq',
+        element: <FAQ></FAQ>,
+      },
       { path: '/about', element: <About></About> },
       { path: '/login', element: <Login></Login> },
       { path: '/register', element: <Register></Register> },
+      { path: '*', element: <NotFound404></NotFound404> }
     ]
   },
-  { path: '*', element: <NotFound404></NotFound404> }
 ])

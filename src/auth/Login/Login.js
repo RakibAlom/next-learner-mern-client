@@ -30,6 +30,7 @@ const Login = () => {
       }).catch(error => {
         console.error(error)
         setError(error.message)
+        toast.error(error.message)
       }).finally(() => {
         setLoading(false);
       })
@@ -38,7 +39,7 @@ const Login = () => {
   return (
     <section className='login-section'>
       <h2 className='text-center mb-4'>Login</h2>
-      <p class="text-danger text-center">{error}</p>
+      <p className="text-danger text-center">{error}</p>
       <Form onSubmit={handleSignIn}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>

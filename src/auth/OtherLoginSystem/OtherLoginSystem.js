@@ -18,7 +18,10 @@ const OtherLoginSystem = () => {
       .then(res => {
         navigate(from, { replace: true });
         toast.success('Welcome, you connected with Google!');
-      }).catch(error => console.error(error));
+      }).catch(error => {
+        console.error(error)
+        toast.error(error.message)
+      });
   }
   const handleGithubSignIn = () => {
     const githubProvider = new GithubAuthProvider();
@@ -26,7 +29,10 @@ const OtherLoginSystem = () => {
       .then(res => {
         navigate(from, { replace: true });
         toast.success('Welcome, you connected with GitHub!');
-      }).catch(error => console.error(error))
+      }).catch(error => {
+        console.error(error)
+        toast.error(error.message)
+      })
 
   }
 

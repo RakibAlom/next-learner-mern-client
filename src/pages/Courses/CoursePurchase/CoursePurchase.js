@@ -10,7 +10,7 @@ const CourseDetails = () => {
         <div className='shadow py-5 px-2 text-center'>
           <h1>Thanks For Purchase</h1>
           <h4>Purchase Amount: <span className='text-success fw-bold'>{course.purchase_price}</span></h4>
-          <p className='pt-2'><span className='fw-semibold'>Course:</span> {course.name}</p>
+          <h5 className='pt-2'><span className='fw-semibold'>Course:</span> {course.name}</h5>
           <div>
             <img className='w-50 my-3 rounded-3' src="https://i.ibb.co/pwxJLd8/thanks-for-purchasing.gif" alt="Purchase Success Alert" />
           </div>
