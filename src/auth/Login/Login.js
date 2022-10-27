@@ -1,8 +1,8 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import OtherLoginSystem from '../OtherLoginSystem/OtherLoginSystem';
 import './Login.css'
 
 const Login = () => {
@@ -12,34 +12,29 @@ const Login = () => {
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control className='rounded-0' type="email" placeholder="Enter email" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control className='rounded-0' type="password" placeholder="Password" />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button className='w-100' variant="primary" type="submit">
-          Submit
+        </Form.Group> */}
+        <Button className='w-100 rounded-0 mt-2' variant="primary" type="submit">
+          Login
         </Button>
       </Form>
       <div className="text-center my-3">
-        <p className='py-3'>OR</p>
-        <Row>
-          <Col md="12" lg="6">
-            <Button className='w-100 border fw-semibold' variant="light" type="submit">
-              <FaGoogle></FaGoogle> Connect with Google
-            </Button>
-          </Col>
-          <Col md="12" lg="6" className='pt-3 pt-lg-0'>
-            <Button className='w-100 border fw-semibold' variant="dark" type="submit">
-              <FaGithub></FaGithub> Connect with Github
-            </Button>
-          </Col>
-        </Row>
+        <div className='d-flex justify-content-between pb-4'>
+          <Link to="#">Forget Password?</Link>
+          <Link to="/register">Create an account?</Link>
+        </div>
+        <p className='pb-3'>OR</p>
+        <div className='other-login-system'>
+          <OtherLoginSystem></OtherLoginSystem>
+        </div>
       </div>
     </section>
   );

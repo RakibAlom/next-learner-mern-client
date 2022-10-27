@@ -5,13 +5,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ThemeControlContext from './contexts/ThemeContext/ThemeControlContext';
+import AuthProvider from './contexts/AuthProvider/AuthProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <ThemeControlContext>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </ThemeControlContext>
   </React.StrictMode>
 );
