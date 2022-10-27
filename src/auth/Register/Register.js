@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import OtherLoginSystem from '../OtherLoginSystem/OtherLoginSystem';
 import './Register.css'
+import toast from 'react-hot-toast';
 
 const Register = () => {
   const { createUserRegister, setUser } = useContext(AuthContext);
@@ -29,11 +30,11 @@ const Register = () => {
           const currentUser = res.user;
           setUser(currentUser)
           console.log(currentUser)
+          toast.success('Welcome, our next learner!');
         }).catch(error => console.error(error));
     } else {
-
+      toast.error('Confirm Password Not Matched!');
     }
-
 
   }
 

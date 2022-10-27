@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const OtherLoginSystem = () => {
   const { user, signInWithProvider, setUser } = useContext(AuthContext);
@@ -14,6 +15,7 @@ const OtherLoginSystem = () => {
         const currentUser = res.user;
         setUser(currentUser)
         console.log(currentUser)
+        toast.success('Welcome, you connected with Google!');
       }).catch(error => console.error(error));
   }
   const handleGithubSignIn = () => {
@@ -23,6 +25,7 @@ const OtherLoginSystem = () => {
         const currentUser = res.user;
         setUser(currentUser)
         console.log(currentUser)
+        toast.success('Welcome, you connected with Github!');
       }).catch(error => console.error(error));
 
   }

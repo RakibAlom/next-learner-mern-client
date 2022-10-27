@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { ThemeContext } from '../../contexts/ThemeContext/ThemeControlContext';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import { Toaster } from 'react-hot-toast';
 
 const Main = () => {
   const { dark } = useContext(ThemeContext);
@@ -13,6 +14,7 @@ const Main = () => {
         <Outlet></Outlet>
       </main>
       <Footer></Footer>
+      <Toaster></Toaster>
     </div>
   );
 };
