@@ -8,7 +8,7 @@ const Courses = () => {
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     setLoading(true)
-    fetch(`http://localhost:5000/courses`)
+    fetch(`https://next-learner-server.vercel.app/courses`)
       .then(res => res.json())
       .then(data => {
         setCourses(data)

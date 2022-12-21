@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const CourseSidebar = () => {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/courses')
+    fetch('https://next-learner-server.vercel.app/courses')
       .then(res => res.json())
       .then(data => setCourses(data))
   }, [courses]);

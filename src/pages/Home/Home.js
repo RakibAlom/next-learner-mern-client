@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Spinner } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
@@ -11,18 +12,27 @@ import Course from '../Courses/Course/Course';
 const Home = () => {
   const { user } = useContext(AuthContext);
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(false)
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/courses`)
+    setLoading(true)
+    fetch(`https://next-learner-server.vercel.app/courses`)
       .then(res => res.json())
-      .then(data => setCourses(data));
+      .then(data => {
+        setCourses(data)
+        setLoading(false)
+      });
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/blog`)
+    setLoading(true)
+    fetch(`https://next-learner-server.vercel.app/blog`)
       .then(res => res.json())
-      .then(data => setBlogs(data));
+      .then(data => {
+        setBlogs(data)
+        setLoading(false)
+      });
   }, []);
 
   return (
@@ -52,6 +62,11 @@ const Home = () => {
       <section className='latest-courses py-5'>
         <h1 className='text-center mb-5'>Latest Courses</h1>
         <div className="row">
+          {loading &&
+            <div className='text-center py-4'>
+              <Spinner animation="border" variant="primary" />
+            </div>
+          }
           {
             courses.sort((a, b) => b.id - a.id).slice(0, 3).map(course =>
               <div className="col-md-6 col-lg-4 mb-4" key={course.id}>
@@ -69,6 +84,11 @@ const Home = () => {
 
       <section className='latest-blogs py-5'>
         <h1 className='text-center mb-5'>Our Blog</h1>
+        {loading &&
+          <div className='text-center py-4'>
+            <Spinner animation="border" variant="primary" />
+          </div>
+        }
         <div className="row">
           {
             blogs.sort((a, b) => b.id - a.id).slice(0, 3).map(blog =>

@@ -8,7 +8,7 @@ const Blogs = () => {
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     setLoading(true)
-    fetch(`http://localhost:5000/blog`)
+    fetch(`https://next-learner-server.vercel.app/blog`)
       .then(res => res.json())
       .then(data => {
         setBlogs(data)
