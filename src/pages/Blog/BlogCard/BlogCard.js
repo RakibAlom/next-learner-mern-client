@@ -10,7 +10,7 @@ const BlogCard = ({ blog }) => {
     <div>
       <Card className={`rounded-0 border-0 shadow ${dark ? "bg-dark" : "bg-light"}`}>
         <Card.Img className='rounded-0' variant="top" src={blog.thumbnail_image} />
-        <Card.Body>
+        <Card.Body style={{ minHeight: '160px' }}>
           <Card.Title><Link className={`text-decoration-none ${dark ? "text-light" : "text-dark"}`} to={`/blog/${blog.slug}`}>{blog.title}</Link></Card.Title>
           <Card.Text className="text-secondary">
             {blog.short_details.slice(0, 120)}...

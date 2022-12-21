@@ -1,15 +1,22 @@
 import React from 'react';
 import { FaPrint } from 'react-icons/fa';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigation } from 'react-router-dom';
 import CourseSidebar from '../CourseSidebar/CourseSidebar';
 import './CourseDetails.css';
 import Pdf from "react-to-pdf";
+import { Spinner } from 'react-bootstrap';
 const ref = React.createRef();
 const CourseDetails = () => {
   const course = useLoaderData()
+  const state = useNavigation()
   return (
     <div className="row py-4">
       <div className="col-md-8 col-lg-9" style={{ position: "relative" }}>
+        {state === 'loading' &&
+          <div className='text-center py-4'>
+            <Spinner animation="border" variant="primary" />
+          </div>
+        }
         <Pdf targetRef={ref} filename={`${course.slug}.pdf`}>
           {({ toPdf }) => <button style={{ position: "absolute", top: "20px", right: "30px" }} onClick={toPdf} className='btn btn-light border border-2 rounded-0 ms-3 fw-semibold' title="Download PDF"><FaPrint></FaPrint></button>}
         </Pdf>

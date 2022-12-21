@@ -10,8 +10,8 @@ const Course = ({ course }) => {
   return (
     <div>
       <Card className={`rounded-0 border-0 shadow ${dark ? "bg-dark" : "bg-light"}`}>
-        <Card.Img className='rounded-0' variant="top" src={course.thumbnail_image} />
-        <Card.Body>
+        <Card.Img className='rounded-0' variant="top" style={{ height: '220px' }} src={course.thumbnail_image} />
+        <Card.Body style={{ minHeight: '200px' }}>
           <Link to={`/courses/${course.slug}`}><Card.Title className={dark ? "text-light" : "text-dark"}>{course.name}</Card.Title></Link>
           <Card.Text className='text-secondary'>
             {course.short_details.slice(0, 65)}...

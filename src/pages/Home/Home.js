@@ -14,13 +14,13 @@ const Home = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    fetch(`https://next-learner-server.vercel.app/courses`)
+    fetch(`http://localhost:5000/courses`)
       .then(res => res.json())
       .then(data => setCourses(data));
   }, []);
 
   useEffect(() => {
-    fetch(`https://next-learner-server.vercel.app/blog`)
+    fetch(`http://localhost:5000/blog`)
       .then(res => res.json())
       .then(data => setBlogs(data));
   }, []);
@@ -30,7 +30,7 @@ const Home = () => {
       <div className="row align-items-center flex-lg-row-reverse">
         <div className="col-md-12 col-lg-6">
           <div className='banner-image pb-2 p-lg-5'>
-            <img className='img-fluid rounded-3' src="https://www.pngitem.com/pimgs/m/387-3877427_vector-marketing-training-seminar-internet-learning-hd-png.png" alt="Banner Thumbnail" />
+            <img className='img-fluid rounded-3' src="https://next-learner-app.web.app/images/banner/banner-image.png" alt="Banner Thumbnail" />
           </div>
         </div>
         <div className="col-md-12 col-lg-6">

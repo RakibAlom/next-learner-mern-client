@@ -12,7 +12,7 @@ const CourseDetails = () => {
           <h4>Purchase Amount: <span className='text-success fw-bold'>{course.purchase_price}</span></h4>
           <h5 className='pt-2'><span className='fw-semibold'>Course:</span> {course.name}</h5>
           <div>
-            <img className='w-50 my-3 rounded-3' src="https://i.ibb.co/pwxJLd8/thanks-for-purchasing.gif" alt="Purchase Success Alert" />
+            <img className='w-50 my-3 rounded-3' src="https://next-learner-app.web.app/images/thanks-for-purchasing.gif" alt="Purchase Success Alert" />
           </div>
 
         </div>
